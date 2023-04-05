@@ -1,5 +1,7 @@
-fn genotp(email:&str,){
-    println!("{email}");
-    //do stuff to generate otp for that email
+use rand::Random;
 
+fn genotp(){
+    //Generate and return a 4 digit number 
+    let x = rand::random::<i64>(1000,9999);
+    return x;
 }
