@@ -9,13 +9,23 @@ fn index() -> &'static str {
 
 #[get("/info")]
 fn info() -> &'static str {
-    "This is the Info Page for Zap"
-    //gen::genotp();
+    "This is the Info Page for Zap" 
+}
+//Check the validity of email before
+#[get("/hello/<email>/<valid>")]
+fn hello(email: &str, valid: bool) -> String {
+    if valid {
+        let x = gen::genotp();
+        format!("Your email is  {}! and your generated otp is {}", email, x)
+    } else {
+        format!("Your email was not valid")
+    }
 }
 
 #[launch]
 fn rocket() -> _ {
     rocket::build().mount("/", routes![index])
     .mount("/info",routes![info])
+    .mount("/",routes![hello])
     
 }
