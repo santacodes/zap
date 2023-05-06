@@ -1,4 +1,5 @@
 mod gen;
+mod email;
 
 #[macro_use] extern crate rocket;
 
