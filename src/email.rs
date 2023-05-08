@@ -4,7 +4,7 @@ use lettre::{Message, SmtpTransport, Transport};
 
 pub fn send_email(tomail: String, otp: i32) {
     let email = Message::builder()
-        .from("NoBody <nobody@domain.tld>".parse().unwrap())
+        .from("Santa Red <santared21@gmail.com>".parse().unwrap())
         .reply_to("Yuin <yuin@domain.tld>".parse().unwrap())
         .to(tomail.parse().unwrap())
         .subject("Your OTP")
