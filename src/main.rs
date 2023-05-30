@@ -3,6 +3,8 @@ mod email;
 mod database;
 
 #[macro_use] extern crate rocket;
+use rocket_contrib::json::Json;
+use serde::Deserialize;
 
 #[get("/")]
 fn index() -> &'static str {
@@ -24,12 +26,22 @@ fn hello(email: &str, valid: bool) -> String {
         format!("Your email was not valid")
     }
 }
+#[derive(Debug, PartialEq, Eq, Deserialize)]
+struct User {
+    email: String,
+    password: String,
+}
 
+#[post("/", format = "json", data = "<user_input>")]
+fn helloPost(user_input: Json<User>) -> String {
+    format!("print test {:?}", user_input)
+}
 
 #[launch]
 fn rocket() -> _ {
     rocket::build().mount("/", routes![index])
     .mount("/info",routes![info])
     .mount("/",routes![hello])
+    .mount("/verification", routes![helloPost]).launch();
     
 }
