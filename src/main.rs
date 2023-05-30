@@ -1,5 +1,6 @@
 mod gen;
 mod email;
+mod database;
 
 #[macro_use] extern crate rocket;
 
@@ -15,6 +16,7 @@ fn info() -> &'static str {
 //Check the validity of email before
 #[get("/hello/<email>/<valid>")]
 fn hello(email: &str, valid: bool) -> String {
+    database::establish_connection();
     if valid {
         let x = gen::genotp();
         format!("Your email is  {}! and your generated otp is {}", email, x)
@@ -22,6 +24,7 @@ fn hello(email: &str, valid: bool) -> String {
         format!("Your email was not valid")
     }
 }
+
 
 #[launch]
 fn rocket() -> _ {

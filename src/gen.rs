@@ -9,9 +9,9 @@ pub fn genotp() -> i32 {
     println!("This is the generated random number {}", num);
     return num;
 }
- pub fn verify(otp: i32) -> bool {
+pub fn verify(otp: i32) -> bool {
     let databaseotp = 2123;  //some random number for test
-    if(otp == databaseotp){
+    if otp == databaseotp {
         return true;
 
     }else{
