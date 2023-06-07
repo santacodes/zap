@@ -12,10 +12,12 @@ pub fn genotp() -> i32 {
 pub fn verify(otp: i32) -> bool {
     let databaseotp = 2123;  //some random number for test
     if otp == databaseotp {
+        println!("Verified the OTP");
         return true;
 
     }else{
+        print!("Not Verified the OTP");
         return false;
     }
-    return false;
+    
  }
