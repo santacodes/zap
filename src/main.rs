@@ -15,22 +15,25 @@ fn index() -> &'static str {
 
 #[derive(Debug, PartialEq, Eq, Deserialize)]
 struct User {
-    id: i64,
+
     email: String,
-    password: String,
-    otp: i64
+    passkey: String
+
 }
 
 #[post("/", format = "json", data = "<user_input>")]
 fn hellopost(user_input: Json<User>) -> String {
-    format!("print test {:?}", user_input)
+    let x = format!("print test {:?} \n", user_input);
+    println!("{}",x);
+    return x;
 }
 
 fn main() {
+    let _myconnection = database::connectiontopostgres();
     rocket::ignite()
     .mount("/hello", routes![hellopost])
     .mount("/", routes![index])
     .launch();
-    let conn = database::connectiontopostgres();
+    
     
 }   
