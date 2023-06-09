@@ -1,4 +1,5 @@
 use rand;
+//use std::hash;
 
 pub fn genotp() -> i32 {
     //Generate and return a 4 digit number

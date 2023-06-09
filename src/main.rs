@@ -2,7 +2,7 @@
 mod gen;
 mod email;
 mod database;
-
+    
 use rocket_contrib::json::Json;
 use serde::Deserialize;
 #[macro_use] extern crate rocket;
@@ -31,5 +31,6 @@ fn main() {
     .mount("/hello", routes![hellopost])
     .mount("/", routes![index])
     .launch();
-
+    let conn = database::connectiontopostgres();
+    
 }   
