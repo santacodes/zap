@@ -25,6 +25,9 @@ struct User {
 fn hellopost(user_input: Json<User>) -> String {
     let x = format!("print test {:?} \n", user_input);
     println!("{}",x);
+    let email  = &user_input.email;
+    println!("This is the Email ID {}",email);
+    gen::genhash(email);
     return x;
 }
 
